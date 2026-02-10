@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Girl ❤️</title>
+    <!-- Cute Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background-color: #ffe6ea;
+            background-image: url('https://www.transparenttextures.com/patterns/shattered-island.png'); /* Texture */
+            height: 100vh;
+            overflow: hidden; /* Stop scrolling */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #d63384;
+            position: relative;
+        }
+
+        /* Animated Kisses Background */
+        .kiss-bg {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            animation: fly 10s linear infinite;
+            z-index: -1;
+            user-select: none;
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+
+        /* Container for all screens */
+        .container {
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            border: 2px solid #ffb6c1;
+            position: relative;
+            animation: popIn 0.5s ease;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #ff477e;
+            line-height: 1.4;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .img-container img {
+            width: 150px;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Pacifico', cursive;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-yes {
+            background: #ff477e;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 71, 126, 0.4);
+        }
+
+        .btn-no {
+            background: #fff;
+            color: #ff477e;
+            border: 2px solid #ff477e;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Gift Boxes */
+        .gift-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .gift-box {
+            font-size: 3rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            animation: wiggle 2s infinite;
+        }
+
+        .gift-box:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        /* Modal / Overlay for Angry Reaction */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+            color: white;
+        }
+
+        .overlay img {
+            width: 250px;
+            margin-bottom: 20px;
+            border: 5px solid red;
+        }
+
+        .overlay h2 {
+            font-size: 2rem;
+            color: red;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Hidden Classes */
+        .hidden {
+            display: none;
+        }
+
+        /* Certificate Style */
+        .certificate {
+            background: #fff8dc;
+            padding: 15px;
+            border: 5px double #daa520;
+            color: #555;
+            font-family: serif;
+            margin-top: 10px;
+        }
+        
+        /* Gift Messages */
+        .gift-msg {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #ff477e;
+            animation: popIn 0.5s ease;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Flying Kisses Generator Script at bottom -->
+
+    <!-- ANGRY OVERLAY -->
+    <div id="angry-overlay" class="overlay">
+        <img src="./imges/ander.png" alt="Gun">
+        <h2>HOW DARE YOU! 😡</h2>
+        <p>Gun nikal li hai... wapis ja kar YES bolo!</p>
+        <button class="btn-yes" onclick="closeAngry()">Sorry Babu, Going Back</button>
+    </div>
+
+    <!-- SCREEN 1 -->
+    <div id="screen-1" class="container">
+        <div class="img-container">
+            <!-- Cute Cat Image -->
+            <img src="./imges/cute.png" alt="Cute Cat">
+        </div>
+        <h1>Hey! I have something for you...<br>Do you wanna see? 👀</h1>
+        <div class="btn-group">
+            <button class="btn-yes" onclick="goToScreen2()">YES 🥰</button>
+            <button class="btn-no" onclick="showAngry()">NO 😒</button>
+        </div>
+    </div>
+
+    <!-- SCREEN 2 -->
+    <div id="screen-2" class="container hidden">
+        <h1>That's my girl! 😽💕</h1>
+        <div class="img-container">
+            <img src="./imges/hugging.png" alt="Happy Cat">
+        </div>
+        <p>I knew you would say yes hehe.</p>
+        <button class="btn-yes" onclick="goToScreen3()">Next ➡️</button>
+    </div>
+
+    <!-- SCREEN 3 -->
+    <div id="screen-3" class="container hidden">
+        <h1>Would you like to be MINE forever? 💍</h1>
+        <div class="img-container">
+            <img src="./imges/folower.png" alt="Flower Cat">
+        </div>
+        <div class="btn-group">
+            <button class="btn-yes" onclick="goToScreen4()">YESSSS! 😍</button>
+            <button class="btn-no" onclick="showAngry()">NO 😤</button>
+        </div>
+    </div>
+
+    <!-- SCREEN 4 (Final) -->
+    <div id="screen-4" class="container hidden">
+        <h1>Yayyy! I Love You! 💖</h1>
+        <p>You are the best thing that ever happened to me. Here are your gifts baby:</p>
+        
+        <div class="gift-container">
+            <!-- Gift 1 -->
+            <div onclick="openGift(1)">
+                <div id="g1-box" class="gift-box">🎁</div>
+                <div id="g1-msg" class="gift-msg hidden">Lots of Kisses 💋💋💋</div>
+            </div>
+            
+            <!-- Gift 2 -->
+            <div onclick="openGift(2)">
+                <div id="g2-box" class="gift-box">🎁</div>
+                <div id="g2-msg" class="gift-msg hidden"> Unlimited Cuddles 🤗</div>
+            </div>
+            
+            <!-- Gift 3 (Certificate) -->
+            <div onclick="openGift(3)">
+                <div id="g3-box" class="gift-box">🎁</div>
+            </div>
+        </div>
+
+        <div id="g3-msg" class="hidden">
+            <div class="certificate">
+                <h3>⭐ CERTIFICATE OF LOVE ⭐</h3>
+                <p>This certifies that</p>
+                <h2 style="color: #ff477e;">MY GIRL</h2>
+                <p>Is officially the cutest and most loved person in the universe.</p>
+                <p>Signed: <i>Your Boy</i> ❤️</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Background Kisses Animation
+        function createKiss() {
+            const kiss = document.createElement('div');
+            kiss.classList.add('kiss-bg');
+            kiss.innerHTML = '💋';
+            kiss.style.left = Math.random() * 100 + 'vw';
+            kiss.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(kiss);
+            
+            setTimeout(() => {
+                kiss.remove();
+            }, 5000);
+        }
+        setInterval(createKiss, 300);
+
+        // Navigation Functions
+        function goToScreen2() {
+            document.getElementById('screen-1').classList.add('hidden');
+            document.getElementById('screen-2').classList.remove('hidden');
+        }
+
+        function goToScreen3() {
+            document.getElementById('screen-2').classList.add('hidden');
+            document.getElementById('screen-3').classList.remove('hidden');
+        }
+
+        function goToScreen4() {
+            document.getElementById('screen-3').classList.add('hidden');
+            document.getElementById('screen-4').classList.remove('hidden');
+            launchConfetti(); // Optional celebration effect
+        }
+
+        // Angry / Gun Logic
+        function showAngry() {
+            document.getElementById('angry-overlay').style.display = 'flex';
+        }
+
+        function closeAngry() {
+            document.getElementById('angry-overlay').style.display = 'none';
+        }
+
+        // Gift Logic
+        function openGift(num) {
+            const box = document.getElementById(`g${num}-box`);
+            const msg = document.getElementById(`g${num}-msg`);
+            
+            box.style.display = 'none'; // Hide box
+            msg.classList.remove('hidden'); // Show message
+        }
+
+    </script>
+</body>
+</html>
