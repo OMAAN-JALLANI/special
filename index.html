@@ -3,342 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Girl ❤️</title>
-    <!-- Cute Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
-    
+    <title>Ramadan Mubarak Laduu ✨</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&family=Amiri:ital@1&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Fredoka', sans-serif;
-            background-color: #ffe6ea;
-            background-image: url('https://www.transparenttextures.com/patterns/shattered-island.png'); /* Texture */
+            background: #020617; /* Deep Night Space */
+            background-image: 
+                radial-gradient(circle at 50% 10%, #1e1b4b 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, #312e81 0%, transparent 30%);
             height: 100vh;
-            overflow: hidden; /* Stop scrolling */
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #d63384;
-            position: relative;
         }
 
-        /* Animated Kisses Background */
-        .kiss-bg {
+        /* --- Grand Decorations: Hanging Strings --- */
+        .decor-layer {
             position: absolute;
-            font-size: 2rem;
-            opacity: 0.3;
-            animation: fly 10s linear infinite;
-            z-index: -1;
-            user-select: none;
-        }
-
-        @keyframes fly {
-            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-            50% { opacity: 0.5; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-        }
-
-        /* Container for all screens */
-        .container {
-            text-align: center;
-            width: 90%;
-            max-width: 400px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(5px);
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
-            border: 2px solid #ffb6c1;
-            position: relative;
-            animation: popIn 0.5s ease;
-        }
-
-        @keyframes popIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        h1 {
-            font-family: 'Pacifico', cursive;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #ff477e;
-            line-height: 1.4;
-        }
-
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            color: #555;
-        }
-
-        .img-container img {
-            width: 150px;
-            height: auto;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Buttons */
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        button {
-            padding: 12px 30px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Pacifico', cursive;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .btn-yes {
-            background: #ff477e;
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 71, 126, 0.4);
-        }
-
-        .btn-no {
-            background: #fff;
-            color: #ff477e;
-            border: 2px solid #ff477e;
-        }
-
-        button:hover {
-            transform: scale(1.1);
-        }
-
-        button:active {
-            transform: scale(0.95);
-        }
-
-        /* Gift Boxes */
-        .gift-container {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-
-        .gift-box {
-            font-size: 3rem;
-            cursor: pointer;
-            transition: transform 0.3s;
-            animation: wiggle 2s infinite;
-        }
-
-        .gift-box:hover {
-            transform: scale(1.2);
-        }
-
-        @keyframes wiggle {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-10deg); }
-            75% { transform: rotate(10deg); }
-        }
-
-        /* Modal / Overlay for Angry Reaction */
-        .overlay {
-            position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
-            display: none;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .string {
+            position: absolute;
+            top: -20px;
+            width: 1px;
+            background: linear-gradient(to bottom, #ffd700, transparent);
+            transform-origin: top center;
+            animation: swing 4s infinite ease-in-out alternate;
+        }
+
+        .string::after {
+            content: '🏮';
+            position: absolute;
+            bottom: -30px;
+            left: -15px;
+            font-size: 25px;
+            filter: drop-shadow(0 0 10px #ffd700);
+        }
+
+        /* Random Fairy Lights */
+        .light {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
+            animation: blink 2s infinite alternate;
+        }
+
+        @keyframes blink { from { opacity: 0.2; } to { opacity: 1; } }
+        @keyframes swing { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+
+        /* --- Grand Center Card --- */
+        .container {
+            position: relative;
+            z-index: 10;
+            padding: 50px 30px;
+            width: 90%;
+            max-width: 450px;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            text-align: center;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), 
+                        inset 0 0 20px rgba(255, 215, 0, 0.1);
+        }
+
+        /* Glowing Animated Border */
+        .container::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            background: linear-gradient(45deg, #ffd700, #ff69b4, #00d2ff, #ffd700);
+            background-size: 400%;
+            z-index: -1;
+            border-radius: 45px;
+            filter: blur(20px);
+            animation: borderGlow 8s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 400% 50%; }
+        }
+
+        /* --- Big Moon --- */
+        .big-moon {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            background: #f6f1d5;
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(246, 241, 213, 0.3);
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        /* --- Super Shooting Stars --- */
+        .shooting-star {
+            position: absolute;
+            width: 180px;
+            height: 2px;
+            background: linear-gradient(90deg, #fff, transparent);
+            filter: drop-shadow(0 0 10px #fff);
+            opacity: 0;
+            z-index: 2;
+        }
+
+        /* --- Text Styling --- */
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .name-badge {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #ff69b4, #ffd700, #00d2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        .action-btn {
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            color: #000;
+            border: none;
+            padding: 18px 45px;
+            font-weight: 800;
+            border-radius: 20px;
+            margin-top: 30px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+            transition: 0.4s;
+        }
+
+        .action-btn:hover { transform: scale(1.1) rotate(-2deg); }
+
+        /* Gatekeeper */
+        #gatekeeper {
+            position: fixed;
+            inset: 0;
+            background: #020617;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            z-index: 1000;
-            color: white;
+            cursor: pointer;
         }
 
-        .overlay img {
-            width: 250px;
-            margin-bottom: 20px;
-            border: 5px solid red;
-        }
-
-        .overlay h2 {
-            font-size: 2rem;
-            color: red;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        /* Hidden Classes */
-        .hidden {
-            display: none;
-        }
-
-        /* Certificate Style */
-        .certificate {
-            background: #fff8dc;
-            padding: 15px;
-            border: 5px double #daa520;
-            color: #555;
-            font-family: serif;
-            margin-top: 10px;
-        }
-        
-        /* Gift Messages */
-        .gift-msg {
-            margin-top: 10px;
-            font-weight: bold;
-            color: #ff477e;
-            animation: popIn 0.5s ease;
-        }
-
+        #message-box { display: none; }
+        .dua-text { font-family: 'Amiri', serif; font-size: 1.4rem; color: #ffd700; }
     </style>
 </head>
 <body>
 
-    <!-- Flying Kisses Generator Script at bottom -->
+    <audio id="bgMusic" loop>
+        <source src="./rm.mpeg" type="audio/mpeg">
+    </audio>
 
-    <!-- ANGRY OVERLAY -->
-    <div id="angry-overlay" class="overlay">
-        <img src="./imges/ander.png" alt="Gun">
-        <h2>HOW DARE YOU! 😡</h2>
-        <p>Gun nikal li hai... wapis ja kar YES bolo!</p>
-        <button class="btn-yes" onclick="closeAngry()">Sorry Babu, Going Back</button>
+    <div id="gatekeeper" onclick="init()">
+        <div style="font-size: 5rem; filter: drop-shadow(0 0 20px #ffd700);">🌙</div>
+        <h2 style="color: #ffd700; font-family: 'Dancing Script'; font-size: 3rem; margin-top: 20px;">Laduu, Enter the Magic</h2>
+        <p style="color: #fff; opacity: 0.6; margin-top: 10px;">Click anywhere to start ✨</p>
     </div>
 
-    <!-- SCREEN 1 -->
-    <div id="screen-1" class="container">
-        <div class="img-container">
-            <!-- Cute Cat Image -->
-            <img src="./imges/cute.png" alt="Cute Cat">
-        </div>
-        <h1>Hey! I have something for you...<br>Do you wanna see? 👀</h1>
-        <div class="btn-group">
-            <button class="btn-yes" onclick="goToScreen2()">YES 🥰</button>
-            <button class="btn-no" onclick="showAngry()">NO 😒</button>
-        </div>
-    </div>
+    <div class="big-moon"></div>
 
-    <!-- SCREEN 2 -->
-    <div id="screen-2" class="container hidden">
-        <h1>That's my girl! 😽💕</h1>
-        <div class="img-container">
-            <img src="./imges/hugging.png" alt="Happy Cat">
-        </div>
-        <p>I knew you would say yes hehe.</p>
-        <button class="btn-yes" onclick="goToScreen3()">Next ➡️</button>
-    </div>
+    <div class="decor-layer" id="decorations"></div>
 
-    <!-- SCREEN 3 -->
-    <div id="screen-3" class="container hidden">
-        <h1>Would you like to be MINE forever? 💍</h1>
-        <div class="img-container">
-            <img src="./imges/folower.png" alt="Flower Cat">
-        </div>
-        <div class="btn-group">
-            <button class="btn-yes" onclick="goToScreen4()">YESSSS! 😍</button>
-            <button class="btn-no" onclick="showAngry()">NO 😤</button>
-        </div>
-    </div>
-
-    <!-- SCREEN 4 (Final) -->
-    <div id="screen-4" class="container hidden">
-        <h1>Yayyy! I Love You! 💖</h1>
-        <p>You are the best thing that ever happened to me. Here are your gifts baby:</p>
-        
-        <div class="gift-container">
-            <!-- Gift 1 -->
-            <div onclick="openGift(1)">
-                <div id="g1-box" class="gift-box">🎁</div>
-                <div id="g1-msg" class="gift-msg hidden">Lots of Kisses 💋💋💋</div>
-            </div>
-            
-            <!-- Gift 2 -->
-            <div onclick="openGift(2)">
-                <div id="g2-box" class="gift-box">🎁</div>
-                <div id="g2-msg" class="gift-msg hidden"> Unlimited Cuddles 🤗</div>
-            </div>
-            
-            <!-- Gift 3 (Certificate) -->
-            <div onclick="openGift(3)">
-                <div id="g3-box" class="gift-box">🎁</div>
-            </div>
+    <div class="container" id="mainUI">
+        <div id="welcome">
+            <h1 style="text-shadow: 0 0 20px #ffd700;">Ramadan Kareem</h1>
+            <span class="name-badge">Mari Laduuu</span>
+            <p style="margin-top: 20px; color: #e2e8f0; line-height: 1.6;">
+                Is mubarak mahine mein dheron duaon ke saath... <br>
+                Suno, tum bohat special dost ho! ✨
+            </p>
+            <button class="action-btn" onclick="reveal()">OPEN MY HEART 💌</button>
         </div>
 
-        <div id="g3-msg" class="hidden">
-            <div class="certificate">
-                <h3>⭐ CERTIFICATE OF LOVE ⭐</h3>
-                <p>This certifies that</p>
-                <h2 style="color: #ff477e;">MY GIRL</h2>
-                <p>Is officially the cutest and most loved person in the universe</p>
-                <p>Signed: <i>Your Boy</i> ❤️</p>
-            </div>
+        <div id="message-box">
+            <h2 style="font-family: 'Dancing Script'; font-size: 3rem; color: #ff69b4;">Dua For Laduu 🤲</h2>
+            <p class="dua-text">"May Allah fill your life with barakah."</p>
+            <p style="margin-top: 15px; font-size: 1.1rem;">
+                Allah tumhein har rozy mein sakoon de, har dua mein asar de... <br><br>
+                Aur haan, <strong>pure 30 rozy rakhne hain</strong>, koi bahana nahi chalega! 😂
+            </p>
+            <p style="margin-top: 20px; font-weight: bold; color: #ffd700; font-size: 1.5rem;">OMAAN! ✨</p>
         </div>
     </div>
 
     <script>
-        // Background Kisses Animation
-        function createKiss() {
-            const kiss = document.createElement('div');
-            kiss.classList.add('kiss-bg');
-            kiss.innerHTML = '💋';
-            kiss.style.left = Math.random() * 100 + 'vw';
-            kiss.style.animationDuration = Math.random() * 3 + 2 + 's';
-            document.body.appendChild(kiss);
-            
-            setTimeout(() => {
-                kiss.remove();
-            }, 5000);
-        }
-        setInterval(createKiss, 300);
-
-        // Navigation Functions
-        function goToScreen2() {
-            document.getElementById('screen-1').classList.add('hidden');
-            document.getElementById('screen-2').classList.remove('hidden');
-        }
-
-        function goToScreen3() {
-            document.getElementById('screen-2').classList.add('hidden');
-            document.getElementById('screen-3').classList.remove('hidden');
+        // 1. Grand Decor Generator (Strings & Lights)
+        function generateDecor() {
+            const decor = document.getElementById('decorations');
+            // Create strings
+            for(let i=0; i<12; i++) {
+                const s = document.createElement('div');
+                s.className = 'string';
+                s.style.left = (i * 9) + '%';
+                s.style.height = (Math.random() * 200 + 100) + 'px';
+                s.style.animationDelay = (Math.random() * 2) + 's';
+                decor.appendChild(s);
+            }
+            // Create fairy lights in background
+            for(let i=0; i<40; i++) {
+                const l = document.createElement('div');
+                l.className = 'light';
+                l.style.left = Math.random() * 100 + '%';
+                l.style.top = Math.random() * 100 + '%';
+                l.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(l);
+            }
         }
 
-        function goToScreen4() {
-            document.getElementById('screen-3').classList.add('hidden');
-            document.getElementById('screen-4').classList.remove('hidden');
-            launchConfetti(); // Optional celebration effect
+        // 2. Grand Shooting Stars
+        function createGrandStars() {
+            setInterval(() => {
+                const star = document.createElement('div');
+                star.className = 'shooting-star';
+                star.style.top = Math.random() * 50 + '%';
+                star.style.left = '110%'; // Start from right
+                
+                // Animation logic
+                const duration = Math.random() * 2 + 1;
+                star.style.transition = `all ${duration}s linear`;
+                
+                document.body.appendChild(star);
+
+                // Start the shoot
+                setTimeout(() => {
+                    star.style.opacity = '1';
+                    star.style.transform = `translateX(-${window.innerWidth + 200}px) translateY(${window.innerWidth/2}px) rotate(-45deg)`;
+                }, 100);
+
+                setTimeout(() => star.remove(), duration * 1000 + 100);
+            }, 2500);
         }
 
-        // Angry / Gun Logic
-        function showAngry() {
-            document.getElementById('angry-overlay').style.display = 'flex';
+        // 3. App Start
+        function init() {
+            document.getElementById('gatekeeper').style.display = 'none';
+            const music = document.getElementById('bgMusic');
+            music.volume = 0.5;
+            music.play();
+            generateDecor();
+            createGrandStars();
         }
 
-        function closeAngry() {
-            document.getElementById('angry-overlay').style.display = 'none';
+        // 4. Reveal
+        function reveal() {
+            document.getElementById('welcome').style.display = 'none';
+            const box = document.getElementById('message-box');
+            box.style.display = 'block';
+            box.style.animation = 'blink 1s ease-in';
         }
-
-        // Gift Logic
-        function openGift(num) {
-            const box = document.getElementById(`g${num}-box`);
-            const msg = document.getElementById(`g${num}-msg`);
-            
-            box.style.display = 'none'; // Hide box
-            msg.classList.remove('hidden'); // Show message
-        }
-
     </script>
 </body>
 </html>
