@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Save My Heart 💖</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Dancing+Script:wght@700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background: linear-gradient(to bottom, #fce4ec, #f8bbd0);
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            touch-action: none;
+        }
+
+        #game-ui {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+            color: #ad1457;
+        }
+
+        #canvas {
+            display: block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        /* --- Floating Words Effect --- */
+        .float-text {
+            position: absolute;
+            color: #f06292;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            pointer-events: none;
+            animation: riseUp 2s forwards;
+            font-weight: bold;
+        }
+
+        @keyframes riseUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-150px); opacity: 0; }
+        }
+
+        /* Message Overlay */
+        #msg-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(173, 20, 87, 0.8);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            z-index: 100;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .btn-retry {
+            background: #fff;
+            color: #ad1457;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            margin-top: 20px;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-ui">
+        <h2 style="font-family: 'Dancing Script'; font-size: 2rem;">Bounces: <span id="score">0</span></h2>
+        <p style="font-size: 0.8rem; opacity: 0.7;">Goal: 15 Bounces for a Surprise!</p>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="msg-overlay">
+        <h1 style="font-size: 3rem;">💔</h1>
+        <h2>Oops! Mera dil toot gaya...</h2>
+        <p>Ayesha, please don't let it fall!</p>
+        <button class="btn-retry" onclick="resetGame()">Try Again 💖</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const scoreEl = document.getElementById('score');
+        const overlay = document.getElementById('msg-overlay');
+
+        let score = 0;
+        let gameActive = true;
+
+        // Ball (Heart) Settings
+        const heart = {
+            x: window.innerWidth / 2,
+            y: 100,
+            radius: 25,
+            dx: 4,
+            dy: 4
+        };
+
+        // Paddle Settings
+        const paddle = {
+            width: 120,
+            height: 15,
+            x: (window.innerWidth - 120) / 2,
+            y: window.innerHeight - 80
+        };
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            paddle.y = canvas.height - 80;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Mobile Controls
+        window.addEventListener('touchmove', (e) => {
+            const touchX = e.touches[0].clientX;
+            paddle.x = touchX - paddle.width / 2;
+            
+            // Boundary checks
+            if (paddle.x < 0) paddle.x = 0;
+            if (paddle.x + paddle.width > canvas.width) paddle.x = canvas.width - paddle.width;
+        });
+
+        function drawHeart(x, y, size) {
+            ctx.fillStyle = '#f06292';
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.bezierCurveTo(x, y - 12, x - 25, y - 12, x - 25, y + 10);
+            ctx.bezierCurveTo(x - 25, y + 25, x, y + 45, x, y + 45);
+            ctx.bezierCurveTo(x, y + 45, x + 25, y + 25, x + 25, y + 10);
+            ctx.bezierCurveTo(x + 25, y - 12, x, y - 12, x, y);
+            ctx.fill();
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = "pink";
+        }
+
+        function drawPaddle() {
+            ctx.fillStyle = '#ad1457';
+            ctx.shadowBlur = 0;
+            ctx.beginPath();
+            ctx.roundRect(paddle.x, paddle.y, paddle.width, paddle.height, 10);
+            ctx.fill();
+        }
+
+        function createFloatText(x, y) {
+            const texts = ["SORRY!", "MAAF KAR DO", "PLEASE 🥺", "LADUUU", "✨💖✨"];
+            const div = document.createElement('div');
+            div.className = 'float-text';
+            div.style.left = x + 'px';
+            div.style.top = y + 'px';
+            div.innerText = texts[Math.floor(Math.random() * texts.length)];
+            document.body.appendChild(div);
+            setTimeout(() => div.remove(), 2000);
+        }
+
+        function update() {
+            if (!gameActive) return;
+
+            // Move Heart
+            heart.x += heart.dx;
+            heart.y += heart.dy;
+
+            // Wall Collisions
+            if (heart.x + 25 > canvas.width || heart.x - 25 < 0) heart.dx *= -1;
+            if (heart.y - 25 < 0) heart.dy *= -1;
+
+            // Paddle Collision
+            if (heart.y + 25 > paddle.y && heart.x > paddle.x && heart.x < paddle.x + paddle.width) {
+                heart.dy *= -1.05; // Slightly faster each bounce
+                heart.dy = Math.max(heart.dy, -12); // Speed limit
+                score++;
+                scoreEl.innerText = score;
+                createFloatText(heart.x, paddle.y - 50);
+                
+                if (score >= 15) {
+                    gameActive = false;
+                    setTimeout(winGame, 500);
+                }
+            }
+
+            // Game Over
+            if (heart.y > canvas.height) {
+                gameActive = false;
+                overlay.style.display = 'flex';
+            }
+
+            draw();
+            requestAnimationFrame(update);
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawHeart(heart.x, heart.y, 25);
+            drawPaddle();
+        }
+
+        function resetGame() {
+            score = 0;
+            scoreEl.innerText = 0;
+            heart.x = canvas.width / 2;
+            heart.y = 100;
+            heart.dx = 4;
+            heart.dy = 4;
+            gameActive = true;
+            overlay.style.display = 'none';
+            update();
+        }
+
+        function winGame() {
+            // Smooth transition to Page 3
+            document.body.style.transition = "2s ease";
+            document.body.style.background = "#fff";
+            setTimeout(() => {
+                window.location.href = "page3.html"; 
+            }, 500);
+        }
+
+        update();
+    </script>
+</body>
+</html>
